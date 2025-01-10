@@ -14,5 +14,5 @@ app.use('/users', userRouter);
 app.use('/posts', isAuth, postsRouter);
 
 app.listen(3001, () => {
-  console.log('run on: http:localhost:3001');
+  console.log('run on: http://localhost:3001');
 });
