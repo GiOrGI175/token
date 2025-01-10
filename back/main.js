@@ -1,18 +1,19 @@
 const express = require('express');
-const conectToDb = require('./db/conectToDb');
-const authRouter = require('./auth/auth.router');
-const userRouter = require('./users/users.router');
-const postsRouter = require('./posts/posts.router');
-const isAuth = require('./middleware/isAuth.middleware');
+const userRouter = require('./users/user.route');
+const connectToDb = require('./db/connectToDb');
+const postRouter = require('./posts/post.route');
+const authRouter = require('./auth/auth.route');
+const isAuth = require('./middlewares/isAuth');
 const app = express();
-app.use(express.json());
 
-conectToDb();
+connectToDb();
+
+app.use(express.json());
 
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
-app.use('/posts', isAuth, postsRouter);
+app.use('/posts', isAuth, postRouter);
 
 app.listen(3001, () => {
-  console.log('run on: http://localhost:3001');
+  console.log('server running on http://localhost:3001');
 });
